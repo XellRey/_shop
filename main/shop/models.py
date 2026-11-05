@@ -16,6 +16,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    #PROTECT - нельзя будет удалить категорию, пока в ней есть товары
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products',
                                  verbose_name="category")
     name = models.CharField('name', max_length=100)
