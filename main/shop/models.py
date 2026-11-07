@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 
 class Category(models.Model):
@@ -38,3 +38,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        """Адрес страницы товара"""
+        return reverse('shop:product', args=[self.slug])

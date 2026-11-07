@@ -25,3 +25,13 @@ def index(request, category_slug=None):
         'category': category,
     }
     return render(request, 'shop/index.html', data)
+
+
+def product_detail(request, product_slug):
+    """Страница товара, если товар закончился выдаст 404"""
+    product = get_object_or_404(Product.objects.select_related('category'), slug=product_slug,
+                                available=True)
+    data = {
+        'product': product,
+    }
+    return render(request, 'shop/product.html', data)

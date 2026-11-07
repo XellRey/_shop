@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% block content %}
+  <nav>
+    <a href="{% url 'shop:index' %}">Главная</a> /
+    <a href="{% url 'shop:category' product.category.slug %}">{{ product.category.name }}</a> /
+    <span>{{ product.name }}</span>
+  </nav>
+
+  <div class="product_page">
+    <div class="product_page_image">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="400">
+      {% else %}
+        <p>Нет фото</p>
+      {% endif %}
+    </div>
+
+    <div class="product_page_info">
+      <h1>{{ product.name }}</h1>
+      <p class="price">{{ product.price }} ₽</p>
+      {{ product.description }}
+    </div>
+  </div>
+{% endblock %}
